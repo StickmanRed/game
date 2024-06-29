@@ -2,6 +2,7 @@ import renderInventory from "./inventory.js";
 import {Enemy, generateEnemy} from "./combat.js";
 
 /* Initializes the game */
+// Difference between this and save.json?
 const initialSave = {
   resources: {
     wood: 0,
@@ -11,18 +12,15 @@ const initialSave = {
   time: 0
 };
 
-let game = JSON.parse(JSON.stringify(initialSave));;
-const save = () => localStorage.save = JSON.stringify(game);
+let game = initialSave;
+const save = () => localStorage.setItem("save", JSON.stringify(game));
 const load = () => {
-  try {
-    let str = localStorage.save;
-    if (str == "[object Object]" || str == "undefined") throw new Error();
+  let str = localStorage.getItem("save");
+  if (str) {
     game = JSON.parse(str);
-  } catch (error) {
-    game = JSON.parse(JSON.stringify(initialSave));
-    save();
   }
-};
+  save();
+}
 
 const update = (() => {
   let lastTick = Date.now();
@@ -42,23 +40,17 @@ const logMessage = (msg, clr) => {
   }
 }
 
-const quack = () => logMessage("quack", "yellow");
-
 $(document).ready(function () {
-  /* Starts the delta time, auto-save, and other initial content */
   renderInventory();
-  setInterval(update, 100); // every tick is 100 ms (0.1 seconds)
+  setInterval(update, 100);
   
   load();
-  setInterval(save, 10000); // saves every 10 seconds
-  
-  console.log("1434"); // i lost the game
+  setInterval(save, 10000);
 });
 
 $("#savebtn").click(() => {
   save();
-  alert("saved"); // change this later to a popup that doesn't require user interaction
-  // On that note, a popup template would be nice
+  alert("saved");
 });
 
 $("#exportbtn").click(() => {
@@ -69,8 +61,7 @@ $("#exportbtn").click(() => {
 $("#resetbtn").click(() => {
   let yes = prompt("are you sure you want to do this? type 'yes' to confirm");
   if (yes == "yes") {
-    game = JSON.parse(JSON.stringify(initialSave));
+    game = initialSave;
     save();
-    load();
   }
 });
