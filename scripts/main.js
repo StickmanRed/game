@@ -10,10 +10,10 @@ const initialSave = {
     metal: 0,
     science: 0
   },
-  inventory: {
+  inventory: [
     ["cookie", 6],
     ["axe", 1]
-  },
+  ],
   time: 0
 };
 
