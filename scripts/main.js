@@ -2,10 +2,6 @@ import renderInventory from "./inventory.js";
 import {Enemy, generateEnemy} from "./combat.js";
 
 /* Initializes the game */
-// Will "game" be reassigned somewhere?
-// yes, in the update function - it was raising an error
-// This should be coming from something else; const object properties can be reassigned
-// yeah, but it was reassigning the entire variable
 const initialSave = {
   resources: {
     wood: 0,
