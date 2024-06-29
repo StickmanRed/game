@@ -3,14 +3,14 @@ p {
 }
 body {
   font-family: Verdana, sans-serif;
-  background-color: AliceBlue;
+  background-color: aliceblue;
 }
 #inv,
 #stats,
 #interface,
 #actions,
 #map {
-  background-color: LightSkyBlue;
+  background-color: lightskyblue;
 }
 #ui-cont1 {
   display: flex;
