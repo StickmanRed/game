@@ -1,7 +1,6 @@
 import renderInventory from "./inventory.js";
 import {Enemy, generateEnemy} from "./combat.js";
 
-/* Initializes the game */
 // Difference between this and save.json? I'm confused
 const initialSave = {
   user: "",
