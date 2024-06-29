@@ -2,12 +2,18 @@ import renderInventory from "./inventory.js";
 import {Enemy, generateEnemy} from "./combat.js";
 
 /* Initializes the game */
-// Difference between this and save.json?
+// Difference between this and save.json? I'm confused
 const initialSave = {
+  user: "",
+  stats: {},
   resources: {
     wood: 0,
     metal: 0,
     science: 0
+  },
+  inventory: {
+    ["cookie", 6],
+    ["axe", 1]
   },
   time: 0
 };
@@ -41,7 +47,7 @@ const logMessage = (msg, clr) => {
 }
 
 $(document).ready(function () {
-  renderInventory();
+  renderInventory(game);
   setInterval(update, 100);
   
   load();
